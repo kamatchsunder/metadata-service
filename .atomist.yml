@@ -80,3 +80,16 @@ generator:
     - "root_package": "com.myorg"
     - "service_class_name": "MyService"
 
+---
+kind: "operation"
+client: "atomist"
+editor:
+  name: "eddumelendez.common-rugs.AddDockerMavenPlugin"
+  group: "eddumelendez"
+  artifact: "common-rugs"
+  version: "0.1.0"
+  origin:
+    repo: "https://github.com/eddumelendez/common-rugs.git"
+    branch: "a44b40b843fc26e43bea8dc093261e41b7e1cbef"
+    sha: "a44b40b"
+
