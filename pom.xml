@@ -69,30 +69,49 @@
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.4.13</version>
+				<version>0.4.11</version>
 				<configuration>
-					<imageName>${docker.image.prefix}/${project.build.finalName}</imageName>
-					<dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
-					<imageTags>
-						<imageTag>${project.version}</imageTag>
-					</imageTags>
-					<noCache>true</noCache>
+					<imageName>src/${project.name}</imageName>
+					<dockerDirectory>src/main/docker</dockerDirectory>
 					<resources>
 						<resource>
 							<targetPath>/</targetPath>
 							<directory>${project.build.directory}</directory>
-							<include>${project.build.finalName}.${project.packaging}</include>
+							<include>${project.build.finalName}.jar</include>
 						</resource>
 					</resources>
+					<useConfigFile>true</useConfigFile>
+					<imageTags>
+						<imageTag>${project.version}</imageTag>
+					</imageTags>
 				</configuration>
+			</plugin>
+        	<plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
+        	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.10</version>
 				<executions>
 					<execution>
-						<id>buildImage</id>
+						<id>unpack</id>
 						<phase>package</phase>
 						<goals>
-							<goal>removeImage</goal>
-							<goal>build</goal>
+							<goal>unpack</goal>
 						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+									<type>jar</type>
+									<outputDirectory>${project.build.directory}/docker</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>

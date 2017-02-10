@@ -93,3 +93,18 @@ editor:
     branch: "a44b40b843fc26e43bea8dc093261e41b7e1cbef"
     sha: "a44b40b"
 
+---
+kind: "operation"
+client: "atomist"
+editor:
+  name: "atomist-rugs.spring-boot-editors.AddDockerMavenBuild"
+  group: "atomist-rugs"
+  artifact: "spring-boot-editors"
+  version: "0.5.3"
+  origin:
+    repo: "https://github.com/atomist-rugs/spring-boot-editors.git"
+    branch: "6b4e1db16848b1c8ae5186e5f65e3907f333ff44"
+    sha: "6b4e1db"
+  parameters:
+    - "base_docker_repository": "src"
+
